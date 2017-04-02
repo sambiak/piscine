@@ -46,5 +46,17 @@ Aussi, nous supposerons que la surface de l’eau est un solide, d’épaisseur 
     \[T_{eau} - T_{air} = \phi_{tot} * \frac{h_{air} + h_{eau}*h_{air}*S*R_{s} + h_{eau}}{h_{eau}*h_{air}*S}\]
     %Content goes here
   \end{frame}
+  \begin{frame}
+   \frametitle{Choix du codage en Python}
+   Le flux dépend de la température et la température dépend du flux, comment faire ?
+Nous avons écris un programme en python qui répète:
+    \begin{enumerate}
+     \item Calculer le flux à partir de la température
+     \item Faire varier la température en soumettant l’eau au flux pendant une seconde
+
+    \end{enumerate}
+
+  \end{frame}
+
 % etc
 \end{document}
