@@ -12,15 +12,23 @@
   \end{frame}
   \begin{frame}
    \frametitle{Hypothèses}
-   	Afin de résoudre ce problème, nous avons dû faire un certain nombre d’hypothèses. 
+   \begin{enumerate}
+    \item Parois de la piscine sont parfaitement isolées
+    \item Fond de la piscine foncé
+    \item Pertes thermiques par rayonnement négligeables
+    \item Résistance thermique de la bâche
+    \item Surface de l’eau solide d’épaisseur nulle
+   \end{enumerate}
 
-Tout d’abord, nous ferons l’hypothèse que les parois de la piscine sont parfaitement isolées, ce qui implique que les seuls échanges de chaleur ont lieu à la surface de la piscine. De plus, le fond de la piscine est supposé assez foncé pour que l’intégralité du rayonnement solaire soit absorbé par la piscine ( et par la bâche lorsqu’il y en a une ).
 
-Nous supposons aussi que les pertes thermiques par rayonnement de la piscine sont négligeables.
 
-Nous considèrerons également, après avoir calculé la résistance thermique de la bâche, qu’il s’agit d’un solide ayant cette résistance thermique. 
+ 
 
-Aussi, nous supposerons que la surface de l’eau est un solide, d’épaisseur infinitésimale.
+
+
+
+
+
   \end{frame}
   \begin{frame}
    \frametitle{schema}
@@ -32,24 +40,33 @@ Aussi, nous supposerons que la surface de l’eau est un solide, d’épaisseur 
   \end{frame}
 
   \begin{frame}
-    \frametitle{This is the second slide}
-    \framesubtitle{A bit more information about this}
     \[h_{eau}*S*(T_{eau} - T_{1}) = \phi_{convection(e->s}\]
-    \[\frac{1}{R_{s}} * (T_{1} - T_{2}) = \phi_{conduction}\]
+    \[\frac{\lambda}{e} * S * (T_{1} - T_{2}) = \phi_{conduction}\]
     \[h_{air}*S*(T_{2} - T_{air}) = \phi_{convection(s->air)}\]
     %More content goes here
   \end{frame}
   \begin{frame}
-    \frametitle{This is the first slide}
     \[T_{eau} - T_{air} = T_{eau} - T_{1} + T_{1} - T_{2} - T_{air}\]
-    \[T_{eau} - T_{air} = \frac{\phi_{convection(e->s)}}{h_{eau}*S} + \frac{\phi_{conduction}}{\frac{1}{R_{s}}} + \frac{\phi_{convection(s->air)}}{h_{air}*S} \]
-    \[T_{eau} - T_{air} = \phi_{tot} * \frac{h_{air} + h_{eau}*h_{air}*S*R_{s} + h_{eau}}{h_{eau}*h_{air}*S}\]
+    \[T_{eau} - T_{air} = \frac{\phi_{convection(e->s)}}{h_{eau}*S} + \frac{\phi_{conduction}}{\frac{\lambda}{e} * S} + \frac{\phi_{convection(s->air)}}{h_{air}*S} \]
+    \[T_{eau} - T_{air} = \phi_{tot}(\frac{1}{h_{eau}*S} + \frac{1}{\frac{\lambda}{e} * S} + \frac{1}{h_{air}*S}) \]
+    \[\phi_{tot} = \frac{T_{eau} - T_{air}}{\frac{1}{S}(\frac{1}{h_{eau}} + \frac{e}{\lambda} + \frac{1}{h_{air}})}\]
     %Content goes here
   \end{frame}
   \begin{frame}
+   \frametitle{Coefficient de conductivité thermique}
+   On considère que l'air transmet la chaleur par conduction pour simplifier les calculs.
+   Les plastiques et l'air sont en série.
+   \[R_{bache} = R_{e} + 2 * R_{p}\]
+   \[R_{bache} = \frac{e_{a}}{\lambda_{a} * S} + 2 * \frac{e_{p}}{\lambda_{p} * S}\]
+   \[R_{bache} = \frac{e}{\lambda * S}\]
+   \[\lambda_{bache} = \frac{e}{R_{bache} * S} = \frac{e}{S* \frac{e_{a}}{\lambda_{a} * S} + 2 * \frac{e_{p}}{\lambda_{p} * S}}\]
+   
+  \end{frame}
+
+  \begin{frame}
    \frametitle{Choix du codage en Python}
    Le flux dépend de la température et la température dépend du flux, comment faire ?
-Nous avons écris un programme en python qui répète:
+Nous avons écrit un programme en python qui répète:
     \begin{enumerate}
      \item Calculer le flux à partir de la température
      \item Faire varier la température en soumettant l’eau au flux pendant une seconde
@@ -57,6 +74,11 @@ Nous avons écris un programme en python qui répète:
     \end{enumerate}
 
   \end{frame}
+  \begin{frame}
+   \frametitle{Sans bache sans vent}
+   
+  \end{frame}
+
 
 % etc
 \end{document}
